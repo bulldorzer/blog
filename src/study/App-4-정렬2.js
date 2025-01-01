@@ -38,12 +38,12 @@ function App(){
     // let result = newPosts.sort((x,y)=>x.title.localeCompare(y.title));
     let newPosts = [...post].sort((x,y)=>{
               if (typeof x[key] === "number") {
-                return (sortState)? x[key] - y[key] : y[key] - x[key] // 숫자정렬방식
+                return (sortState)? x[key] - y[key] : y[key] - x[key] // 숫자정렬방식   오름차순 : 내림차순
               }else{
 
                 return (sortState)
-                        ? x[key].localeCompare(y[key]) 
-                        : y[key].localeCompare(x[key])
+                        ? x[key].localeCompare(y[key]) // 오름차순
+                        : y[key].localeCompare(x[key]) // 내림차순
               }
     });
     setPost(newPosts)

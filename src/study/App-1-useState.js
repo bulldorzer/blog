@@ -43,7 +43,8 @@ function App(){
   const handle좋아요 = () => {
     let copy = [...좋아요]
     copy[0] += (copy[0]<5 ? copy[0]+=1 : copy[0]);
-    좋아요변경(copy)}
+    좋아요변경(copy)
+  }
   const editPostTitle = ()=>{
     // 배열 값 바꿀 때
     let copy = [...postTitle]; // 배열 스프레드복사로 값을 카피
