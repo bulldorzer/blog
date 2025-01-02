@@ -1,20 +1,41 @@
 import { useEffect, useState, useRef } from "react";
 import PostInput from "./PostInput";
+import Write from "./Write";
 
 function Post(props) { //props = 객체형태다
 
     // destructuring = 구조분해 할당
-    const {item,increaseGood,editPostTitle,editPostDate} = props
+    const {item,increaseGood,editPostTitle,editPostDate,deletePost,writePost} = props
     // 타이틀을 다른변수에 임시로 저장해 놓음
     const [tempTitle,setTempTitle] = useState(item.title);
     const [tempDate,setTempDate] = useState(item.regiDate);
     
     const [isEditing, setIsEditing] = useState(false); // 수정불가상태
+    
+    const [deleteVisible, setDeleteVisible] = useState(false); 
 
     const handleTitleChange = (e)=>setTempTitle(e.target.value);
     const handleDateChange = (e)=>setTempDate(e.target.value);
 
+    const handleEditMode = ()=>{setIsEditing(true)}; // 수정모드
+    const handleGoodBtn = (e)=>{ // 좋아요 버튼
+        e.stopPropagation(); // 버블링막기 - 상위요소로 이벤트가 전파되지 않음
+        increaseGood(item.id)
+    }
+    const showDeleteModal = ()=>{setDeleteVisible(true)}; // 삭제버튼
+    const confirmDelete = ()=>{
+        deletePost(item.id)
+        setDeleteVisible(false)
+    }; // 삭제버튼
+    const cancelDelete = ()=>{
+        setDeleteVisible(false)
+    }; 
     const postRef = useRef(null); // 특정 대상에 이름표 붙이는 것
+
+    // 클래스 이름
+    const postClassName = `postInput ${isEditing ? "edit" : ""}`
+    // true 이면 - "postInput edit"
+    // false 이면 - "postInput"
     
     // post영역 바깥을 클릭한 경우
     // 매개변수 e : 이벤트가 발생한 대상에 대한 정보를 담아옴
@@ -65,17 +86,14 @@ function Post(props) { //props = 객체형태다
         }
     },[isEditing, tempTitle, tempDate])
     
-    // 클래스 이름
-    const postClassName = `postInput ${isEditing ? "edit" : ""}`
-    // true 이면 - "postInput edit"
-    // false 이면 - "postInput"
-
+    
+    
     // postRef = .post
     return (
         <div 
             className="post"
             ref={postRef}
-            onClick={()=>{setIsEditing(true)}} 
+            onClick={handleEditMode} 
         >
             <div>
                 <PostInput
@@ -84,23 +102,44 @@ function Post(props) { //props = 객체형태다
                     value={tempTitle}
                     onChange={handleTitleChange}
                     readOnly={!isEditing}
-                    onClick = {()=>{setIsEditing(true)}} // 항상 수정모드 활성화
+                    onClick = {handleEditMode} // 항상 수정모드 활성화
                 />
-                <span onClick={()=>{increaseGood(item.id)}}>👍🏻</span>
-                {item.good}
+                <button onClick={handleGoodBtn}>👍🏻{item.good}</button>
+                
             </div>
             
-            <PostInput
-                type="date"
-                className={postClassName}
-                value={tempDate}
-                onChange={handleDateChange}
-                readOnly={!isEditing}
-                onClick = {()=>{setIsEditing(true)}} // 항상 수정모드 활성화
-            />
-            
-            
-            
+            <div>
+                <PostInput
+                    type="date"
+                    className={postClassName}
+                    value={tempDate}
+                    onChange={handleDateChange}
+                    readOnly={!isEditing}
+                    onClick = {handleEditMode} // 항상 수정모드 활성화
+                    /*
+                        onClick 실행시 매개변수에 모든 정보가 담김
+                        onClick = {(매개변수)=>{setIsEditing(true)}}
+                    */
+                />
+                <button onClick={showDeleteModal}>❌</button>
+            </div>
+            {/* 
+                삭제 레이어창 
+                - 특정 요소가 보이냐 안보이냐 조절
+                1) state : false - 안보임/ true - 보임
+                2) 특정 요소 클릭하면
+                - setState() 함수가 실행되면서 true또는 false 값으로 변경
+                3) 태그
+                    {state변수 && <태그></태그}
+                    -state변수에 따라 뒤에오는 태그가 true(보임) / false(안보임)
+            */}
+            {deleteVisible && (
+            <div className="deleteModal">
+                <span>삭제하시겠습니까?</span>
+                <button onClick={confirmDelete} className="confirm">확인</button>
+                <button onClick={cancelDelete} className="cancel">취소</button>
+            </div>
+            )}
         </div>
     )
 }

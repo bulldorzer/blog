@@ -67,6 +67,48 @@
             });
             console.log(newObj);
         }
+
+
+
+        // 배열 스프레드
+        // 객체 스프레드
+        console.log('-------------------------------------------------')
+        
+        const key1 = 'name';
+        const key2 = 'tel';
+        const key3 = 'gender';
+
+        const man = {name : '홍길동', age: 30};
+        const newMan = {...man, name : '이몽룡', tel : '010-0000-0000'} 
+        const newMan2 = {...man, [key1] : '이몽룡', [key2] : '010-0000-0000'} 
+        const newWoman = {...man, [key1] : '성춘향', [key3] : 'false'} 
+        // ...man 새로운 객체로 복제
+        // name 프로퍼티 : 기존에 있던 프로퍼티라면 덮어쓰기
+        // tel 프로퍼티 : 기존에 없던 프로퍼티라면 - 추가
+        // [key] : key값 동적으로 가져오기
+
+        /*
+            {
+                // 동적할당 : 배열
+                    [key]   :   [1,2,3]
+            }
+        */
+        console.log(man);
+        console.log(newMan);
+
+
+        console.log('-------------------------------------------------')
+
+        const numbers = [1,2,3]
+        console.log(Math.max([1,2,3]));// Nan
+        console.log(Math.max(...[1,2,3]));// [1,2,3] => 1,2,3
+        console.log(Math.max(1,2,3));// 최대값 찾음
+        
+        console.log(numbers);// 원본 배열 [1,2,3]
+        console.log(...numbers);// 원본 배열 분리시킨 1,2,3
+        console.log([...numbers]);// 원본 배열 복제 - [1,2,3](깊은복사)
+        // max 계산하려면 배열을 펼쳐야함 => ...배열변수명
+
     </script>
 </body>
 </html>

@@ -1,0 +1,40 @@
+a{text-decoration: none;}
+button{background-color: transparent; border: 0;}
+
+
+/* header */
+.header{
+  display: flex; width: 100%; padding: 20px;
+  background-color: #444; color: #fff; 
+}
+.header .logo{margin-right: 20px;}
+.header nav{display: flex; align-items: center; }
+.header nav a{ padding: 0 10px; color: #fff; text-transform: uppercase;}
+
+
+/* Basic Layout */
+.container{display: flex; width: 100%; margin: 1rem 0; gap : 1rem; }
+.main{ flex: 3; padding : 20px; }
+.sideMenu{ flex: 1; background-color :#EEE; padding : 20px;}
+
+
+/* Blog Page */
+/* sort */
+.sortButtons{ padding: 20px;}
+.sortButtons button{ margin: 0 1rem 0 0; border-bottom:  1px dotted #444; }
+
+/* post */
+.post {width: 100%; padding: 30px 15px; border-bottom: 1px solid #ddd;}
+.post h3{margin: 0 0 20px;}
+
+.post .postInput{
+  width: 160px; margin: 0 10px 5px 0px; padding: 5px 10px; 
+  background-color: transparent;  border: 1px solid transparent; outline: 0;
+  transition: 0.2s;
+}
+.post .postInput.edit {background-color: #d9ecfd;border-color: #ddd;} /*수정모드*/
+
+.post .deleteModal{padding: 20px 10px 0;}
+.post .deleteModal button{padding: 3px 12px; margin: 0 0 0 10px; border-radius: 3px;}
+.post .deleteModal .confirm{background-color: #000; color: #fff;}
+.post .deleteModal .cancle{border: 1px solid #000; color: #000;} 

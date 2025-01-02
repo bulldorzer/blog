@@ -1,5 +1,5 @@
 import Post from './Post'
-function PostList({posts, increaseGood,editPostTitle,editPostDate}) {
+function PostList({posts, increaseGood,editPostTitle,editPostDate,deletePost,writePost}) {
     
     return (
         <>
@@ -13,6 +13,8 @@ function PostList({posts, increaseGood,editPostTitle,editPostDate}) {
                 increaseGood={increaseGood}
                 editPostTitle={editPostTitle}
                 editPostDate={editPostDate}
+                deletePost={deletePost}
+                writePost={writePost}
                 />
             )
           })
