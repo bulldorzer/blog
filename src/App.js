@@ -72,7 +72,7 @@ function App(){
       const copy = [...prevPosts]; // 배열 스프레드복사로 값을 카피
       const index = copy.findIndex(el => el.id === id)
       if (index !== -1) {
-        copy[index].title = newRegiDate // 복사된 배열의 객체 값을 바꿈
+        copy[index].regiDate = newRegiDate // 복사된 배열의 객체 값을 바꿈
       }
       return copy;
     }) // 변경된 배열로 통째로 값을 변경

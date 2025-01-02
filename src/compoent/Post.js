@@ -37,15 +37,11 @@ function Post(props) { //props = 객체형태다
             if (isEditing) { // 수정된 내용 반영
                 editPostTitle(item.id, tempTitle)
                 editPostDate(item.id, tempDate)
+                setIsEditing(!isEditing); // 수정 가능 모드 잠가
             }
-            setIsEditing(!isEditing); // 수정 가능 모드 잠가
         }
 
-        if (isEditing) {
-            editPostTitle(item.id, tempTitle)
-            editPostDate(item.id, tempDate)
-        }
-        setIsEditing(!isEditing);
+        
     }
 
     // useCallback(함수, 의존성배열) 
