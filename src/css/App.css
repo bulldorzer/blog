@@ -1,5 +1,5 @@
 a{text-decoration: none;}
-button{background-color: transparent; border: 0;}
+button{background-color: transparent; border: 0; padding: 3px 12px; margin: 0 0 0 10px; border-radius: 3px;}
 
 
 /* header */
@@ -35,6 +35,17 @@ button{background-color: transparent; border: 0;}
 .post .postInput.edit {background-color: #d9ecfd;border-color: #ddd;} /*수정모드*/
 
 .post .deleteModal{padding: 20px 10px 0;}
-.post .deleteModal button{padding: 3px 12px; margin: 0 0 0 10px; border-radius: 3px;}
+/*.post .deleteModal button{padding: 3px 12px; margin: 0 0 0 10px; border-radius: 3px;}*/
 .post .deleteModal .confirm{background-color: #000; color: #fff;}
 .post .deleteModal .cancle{border: 1px solid #000; color: #000;} 
+
+/* todo */
+.todoMenu{
+  margin-right: 20px;
+  font: bold 16px 'inherit';
+  text-decoration: underline;
+}
+.todoContent{
+  padding: 5rem 0;
+}
+.modify{background-color: #000; color: #fff;}

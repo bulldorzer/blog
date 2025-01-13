@@ -1,11 +1,18 @@
+import { useSearchParams } from "react-router-dom";
 
-function IndexPage(){
+function ListPage(){
+    
+    const [queryParams] = useSearchParams();
+    
+    const page = queryParams.get("page") ? parseInt(queryParams.get("page")) : 1
+    const size = queryParams.get("size") ? parseInt(queryParams.get("size")) : 10
+    
     return(
         
-        <div style={{background : 'lightyellow'} }>
-            <p>List Page</p>
+        <div>
+            <p>List Page---{page}---{size}</p>
         </div>
     
     )
 }
-export default IndexPage;
+export default ListPage;

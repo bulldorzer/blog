@@ -1,10 +1,10 @@
 
-function IndexPage(){
+function AddPage(){
     return(
-        <div style={{background : 'lightyellow'} }>
+        <div>
             <p>Add Page</p>
         </div>
 
     )
 }
-export default IndexPage;
+export default AddPage;
