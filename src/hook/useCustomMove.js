@@ -34,7 +34,7 @@ const useCustomMove = () => {
             queryStr = queryDefault
         }
 
-        navigate( { pathname : `../todo`, search : queryStr} )
+        navigate( { pathname : `/todo/list`, search : queryStr} )
 
         setRefresh(!refresh)
     }

@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
 
 import {getList} from '../../api/todoApi'
 
 import PageComponent from "../common/PageComponent"
-import ButtonGroup from "../common/ButtonGroup"
 
 import useCustomMove from '../../hook/useCustomMove'
+
+import ReadPage from "../../pages/todo/ReadPage"
 
 
 // 초기값 객체
@@ -27,11 +27,12 @@ const ListComponent = ({tno})=>{
 
     const {page, size, refresh, moveToList, moveToRead} = useCustomMove()
     const [serverData, setServerData] = useState(initState)
+    const [selectedTno, setSelectedTno] = useState(null);
 
-    const navigate = useNavigate()
+
+    
 
 
-    const handleClickAdd = ()=> navigate({pathname : '/todo/add'})
 
     useEffect(()=>{
         // 서버에 데이터 요청
@@ -41,9 +42,7 @@ const ListComponent = ({tno})=>{
         
     },[page, size])
 
-    const buttons = [
-        {label : '글쓰기', className : 'add', onClick : handleClickAdd }
-    ]
+    
 
     return (
         <>
@@ -56,7 +55,7 @@ const ListComponent = ({tno})=>{
                 </li>
                 {
                     serverData.dtoList.map( todo => (
-                        <li key={todo.tno} onClick={()=>{ moveToRead(todo.tno) }}>
+                        <li key={todo.tno} onClick={()=>setSelectedTno(todo.tno)}>
                             <span className="tno">{todo.tno}</span>
                             <span className="title">{todo.title}</span>
                             <span className="writer">{todo.writer}</span>
@@ -66,7 +65,8 @@ const ListComponent = ({tno})=>{
                 }
             </ul>
             <PageComponent serverData={serverData} movePage={moveToList}/>
-            <ButtonGroup buttons={buttons}/>
+            <hr/>
+            {selectedTno && <ReadPage tno={selectedTno} />}
         </>
         
     )

@@ -1,14 +1,38 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux"
 
-function UtilMenu() {
+import {logout} from "../slices/loginSlice"
+import useCustomLogin from "../hook/useCustomLogin"
+
+
+const UtilMenu = ()=>{
+
+    const loginState = useSelector(state => state.loginSlice)
+    
+    const {doLogout, moveToPath} = useCustomLogin()
+
+    const handleClickLogout = (e) => {
+        e.preventDefault()
+        doLogout()
+        alert('로그아웃 되었습니다')
+        moveToPath('/')
+    }
+
     return(
-        <nav className="utilMenu">
-            <Link to={"/login"}>로그인</Link> 
-            {/* 랜더링 하면서 a태그로 변경됨 a태그는 새로고침으로 하게되어 비동기로 소스를 가져와야함으로 Link태그를 사용함 */}
-            <Link to={"/join"}>회원가입</Link>
-            <Link to={"/cart"}>장바구니</Link>
-        </nav>
+        <div className="utilMenu">
+            {
+                loginState.email 
+                    ? <>
+                        <Link to={"#"} onClick={handleClickLogout} >로그아웃</Link>
+                        <Link to={"/member/mypage"}>마이페이지</Link></>
+                    : <> 
+                        <Link to={"/member"}>로그인</Link>
+                        <Link to={"/signup"}>회원가입</Link> </>
+            }
+            <Link to={"/member/cart"}>장바구니</Link>
+        </div>
     )
 }
 
-export default UtilMenu
+export default UtilMenu;

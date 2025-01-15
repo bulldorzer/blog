@@ -1,4 +1,5 @@
 import { useSearchParams } from "react-router-dom";
+import ListComponent from "../../component/todo/ListComponent";
 
 function ListPage(){
     
@@ -11,6 +12,7 @@ function ListPage(){
         
         <div>
             <p>List Page---{page}---{size}</p>
+            <ListComponent/>
         </div>
     
     )

@@ -1,8 +1,6 @@
 import { useState } from "react";
 import {postAdd} from '../../api/todoApi'
 
-import useCustomMove from '../../hook/useCustomMove'
-
 import ResultModal from '../common/ResultModal'
 import ButtonGroup from "../common/ButtonGroup";
 import LiItem from "../common/LiItem";
@@ -14,7 +12,6 @@ const AddComponent = () =>{
     const [todo, setTodo] = useState({...initState})
     const [showResult, setShowResult] = useState(null)
 
-    const {moveToList} = useCustomMove()
     
     const handleChangeTodo = (e) => {
         const {name, value} = e.target; 
@@ -44,7 +41,6 @@ const AddComponent = () =>{
     ]
 
     const buttons = [
-        {label : '취소', className : 'cancle', onClick : ()=> moveToList() },
         {label : '글쓰기', className : 'add', onClick : handleClickAdd }
     ]
 

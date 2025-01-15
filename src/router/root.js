@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import { Suspense, lazy } from "react"; // 컴포넌트 로딩 최적화
 import todoRouter from "./todoRouter";
+import memberRouter from "./memberRouter";
 
 
 const Loading = <div>Loading</div>
@@ -27,6 +28,11 @@ const root = createBrowserRouter([
         path : "todo",
         element : <Suspense fallback={Loading}><TodoIndex/></Suspense>,
         children : todoRouter()
+    },
+    {
+        path : "member",
+        children : memberRouter()
+        
     },
 ])
 
