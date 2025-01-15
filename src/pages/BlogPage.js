@@ -4,9 +4,9 @@ import { useCallback, useState } from 'react';
 import '../css/App.css';
 
 import data from '../data/mock';
-import PostList from '../compoent/PostList';
-import SortButtons from '../compoent/SortButtons';
-import Write from '../compoent/Write';
+import PostList from '../component/PostList';
+import SortButtons from '../component/SortButtons';
+import Write from '../component/Write';
 
 import BasicLayout from '../layout/BasicLayout'
 

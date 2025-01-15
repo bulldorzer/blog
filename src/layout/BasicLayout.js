@@ -1,4 +1,4 @@
-import Header from "../compoent/Header"
+import Header from "../component/Header"
 const BasicLayout = ({children}) =>{
     return (
         <>

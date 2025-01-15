@@ -3,7 +3,7 @@ import {postAdd} from '../../api/todoApi'
 
 import useCustomMove from '../../hook/useCustomMove'
 
-import ResultModal from '../../component/common/ResultModal'
+import ResultModal from '../common/ResultModal'
 import ButtonGroup from "../common/ButtonGroup";
 import LiItem from "../common/LiItem";
 
